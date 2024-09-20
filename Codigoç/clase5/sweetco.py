@@ -11,6 +11,24 @@ def prodMayIngSem(mat, lst):
     
     return [prod, mayor]
 
+def diaMayVent(mat, lst):
+    dia_ventas = 0
+    suma_productos = 0
+    dia = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
+    for columna in range(7):
+        producto = 0
+        suma_productos = 0
+        for fila in range(5):
+            suma_productos += (mat[fila][columna] * lst[producto])
+            producto += 1
+        if suma_productos >= dia_ventas:
+            dia_ventas = suma_productos
+            i = columna
+    return [dia[i], dia_ventas]
+
+
+
+
 lstPrecios=[1500, 5000, 6500, 2500, 22500]
 
 matVtas=[[100, 88, 92, 94, 85, 110, 100],
@@ -20,4 +38,8 @@ matVtas=[[100, 88, 92, 94, 85, 110, 100],
          [ 18, 25, 33, 21, 22,  28,  32]]
 
 prod, ingresos= prodMayIngSem(matVtas, lstPrecios)
+dia, dia_ventas = diaMayVent(matVtas, lstPrecios)
 print("El producto que genera mas ingresos en la semana es: ", prod, f" - vendio: ${ingresos:,}", )
+print(f'El dia con mayor venta fue el {dia}, con una venta de {dia_ventas:,}')
+
+
